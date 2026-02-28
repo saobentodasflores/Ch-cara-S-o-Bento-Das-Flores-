@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Fazenda São Bento das Flores</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --verde:#2f5d3a;
+  --claro:#f5f3ee;
+  --dourado:#b89b5e;
+}
+
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:var(--claro);
+  color:#333;
+}
+
+header{
+  background:url('quarto1.jpg') center/cover no-repeat;
+  height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  position:relative;
+}
+
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+}
+
+header div{
+  position:relative;
+  z-index:2;
+}
+
+header h1{
+  font-family:'Playfair Display', serif;
+  font-size:3rem;
+  margin-bottom:10px;
+}
+
+header p{
+  font-size:1.2rem;
+}
+
+section{
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+h2{
+  font-family:'Playfair Display', serif;
+  text-align:center;
+  margin-bottom:40px;
+  color:var(--verde);
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  text-align:center;
+}
+
+.features div{
+  background:white;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Carrossel */
+
+.carousel{
+  position:relative;
+  max-width:800px;
+  margin:auto;
+}
+
+.carousel img{
+  width:100%;
+  border-radius:10px;
+  display:none;
+}
+
+.carousel img.active{
+  display:block;
+}
+
+.carousel button{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:white;
+  border:none;
+  padding:10px;
+  cursor:pointer;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+/* Calendário */
+
+.calendar{
+  text-align:center;
+}
+
+input[type="date"]{
+  padding:12px;
+  font-size:1rem;
+  border:2px solid var(--verde);
+  border-radius:5px;
+}
+
+.aviso{
+  margin-top:15px;
+  font-weight:600;
+}
+
+footer{
+  background:var(--verde);
+  color:white;
+  text-align:center;
+  padding:30px 20px;
+}
+
+footer a{
+  color:var(--dourado);
+  text-decoration:none;
+}
+
+button.reserva{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  background:var(--verde);
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+@media(max-width:600px){
+  header h1{font-size:2rem;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <h1>Hotel Fazenda São Bento das Flores</h1>
+    <p>Estrada de chão… porque o paraíso não tem pressa.</p>
+  </div>
+</header>
+
+<section>
+  <h2>Uma Experiência Única</h2>
+  <div class="features">
+    <div>🌾 Retiro espiritual</div>
+    <div>🕊️ Descanso verdadeiro</div>
+    <div>🍞 Gastronomia colonial</div>
+    <div>🌳 Contato com a natureza</div>
+    <div>👨‍👩‍👧‍👦 Momentos em família</div>
+  </div>
+</section>
+
+<section>
+  <h2>Nossos 7 Quartos Aconchegantes</h2>
+  <div class="carousel">
+    <button class="prev" onclick="mudarSlide(-1)">❮</button>
+    <img src="quarto1.jpg" class="active">
+    <img src="quarto2.jpg">
+    <img src="quarto3.jpg">
+    <img src="quarto4.jpg">
+    <img src="quarto5.jpg">
+    <img src="quarto6.jpg">
+    <img src="quarto7.jpg">
+    <button class="next" onclick="mudarSlide(1)">❯</button>
+  </div>
+</section>
+
+<section class="calendar">
+  <h2>Reservas</h2>
+  <p>Check-in disponível apenas em <strong>03 de Abril</strong></p>
+  <input type="date" id="dataCheckin">
+  <div class="aviso" id="mensagem"></div>
+  <button class="reserva">Solicitar Reserva</button>
+</section>
+
+<section>
+  <h2>Localização</h2>
+  <p>
+    📍 Serra Gaúcha – RS<br>
+    🚗 18 km do centro de São Francisco de Paula<br>
+    📮 CEP: 95400-782
+  </p>
+</section>
+
+<footer>
+  📲 Reservas e Informações:<br><br>
+  ✉ <a href="mailto:eliasmontenegrobarroso@gmail.com">eliasmontenegrobarroso@gmail.com</a><br>
+  💬 <a href="https://t.me/AtenSBDF_bot" target="_blank">Telegram Atendimento</a>
+  <br><br>
+  © 2026 Hotel Fazenda São Bento das Flores
+</footer>
+
+<script>
+let slideIndex = 0;
+let slides = document.querySelectorAll(".carousel img");
+
+function mudarSlide(n){
+  slides[slideIndex].classList.remove("active");
+  slideIndex = (slideIndex + n + slides.length) % slides.length;
+  slides[slideIndex].classList.add("active");
+}
+
+document.getElementById("dataCheckin").addEventListener("change", function(){
+  const dataSelecionada = this.value;
+  const permitido = "2026-04-03";
+
+  if(dataSelecionada === permitido){
+    document.getElementById("mensagem").innerHTML = "✅ Data disponível! Reserve agora.";
+    document.getElementById("mensagem").style.color = "green";
+  } else {
+    document.getElementById("mensagem").innerHTML = "❌ Sem disponibilidade. Próxima data disponível: 03/04/2026.";
+    document.getElementById("mensagem").style.color = "red";
+  }
+});
+</script>
+
+</body>
+</html>
