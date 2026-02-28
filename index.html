@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hotel Fazenda São Bento das Flores</title>
+<title>Chácara São Bento das Flores</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -152,6 +152,11 @@ button.reserva{
   font-size:1rem;
   cursor:pointer;
   border-radius:5px;
+  transition:0.3s;
+}
+
+button.reserva:hover{
+  background:#244c2f;
 }
 
 @media(max-width:600px){
@@ -164,7 +169,7 @@ button.reserva{
 
 <header>
   <div>
-    <h1>Hotel Fazenda São Bento das Flores</h1>
+    <h1>Chácara São Bento das Flores</h1>
     <p>Estrada de chão… porque o paraíso não tem pressa.</p>
   </div>
 </header>
@@ -197,10 +202,15 @@ button.reserva{
 
 <section class="calendar">
   <h2>Reservas</h2>
-  <p>Check-in disponível apenas em <strong>03 de Abril</strong></p>
+  <p>Check-in disponível apenas em <strong>03 de Abril de 2026</strong></p>
   <input type="date" id="dataCheckin">
   <div class="aviso" id="mensagem"></div>
-  <button class="reserva">Solicitar Reserva</button>
+
+  <br>
+
+  <a href="https://t.me/AtenSBDF_bot" target="_blank">
+    <button class="reserva">Reservar pelo Telegram</button>
+  </a>
 </section>
 
 <section>
@@ -217,7 +227,7 @@ button.reserva{
   ✉ <a href="mailto:eliasmontenegrobarroso@gmail.com">eliasmontenegrobarroso@gmail.com</a><br>
   💬 <a href="https://t.me/AtenSBDF_bot" target="_blank">Telegram Atendimento</a>
   <br><br>
-  © 2026 Hotel Fazenda São Bento das Flores
+  © 2026 Chácara São Bento das Flores
 </footer>
 
 <script>
@@ -235,7 +245,7 @@ document.getElementById("dataCheckin").addEventListener("change", function(){
   const permitido = "2026-04-03";
 
   if(dataSelecionada === permitido){
-    document.getElementById("mensagem").innerHTML = "✅ Data disponível! Reserve agora.";
+    document.getElementById("mensagem").innerHTML = "✅ Data disponível! Clique abaixo para reservar pelo Telegram.";
     document.getElementById("mensagem").style.color = "green";
   } else {
     document.getElementById("mensagem").innerHTML = "❌ Sem disponibilidade. Próxima data disponível: 03/04/2026.";
